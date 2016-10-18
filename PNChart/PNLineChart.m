@@ -50,8 +50,8 @@
 
     if (self) {
         [self setupDefaultValues];
+        
     }
-
     return self;
 }
 
@@ -104,6 +104,7 @@
             num -= 1;
         }
     }
+    
 }
 
 - (void)setYLabels:(NSArray *)yLabels {
@@ -134,7 +135,7 @@
     NSString *labelText;
 
     if (_showLabel) {
-        CGFloat yStepHeight = _chartCavanHeight / _yLabelNum;
+       CGFloat yStepHeight = _chartCavanHeight / _yLabelNum;
 
         for (int index = 0; index < yLabels.count; index++) {
             labelText = yLabels[index];
@@ -147,6 +148,13 @@
             [self setCustomStyleForYLabel:label];
             [self addSubview:label];
             [_yChartLabels addObject:label];
+            
+        }
+        for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
+            //画虚线
+            ZDCustomView *firstView = [[ZDCustomView alloc]initWithFrame:CGRectMake(_chartMarginBottom + 10, (_chartCavanHeight - i * yStepHeight + _yLabelHeight / 2), self.frame.size.width-_chartMarginLeft-35, 1)];
+            firstView.backgroundColor = [UIColor whiteColor];
+            [self addSubview:firstView];
         }
     }
 }
@@ -198,7 +206,7 @@
 
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];//x轴的位置调整
             [label setTextAlignment:NSTextAlignmentLeft];
-            label.backgroundColor = [UIColor redColor];
+            label.backgroundColor = [UIColor clearColor];
             label.text = labelText;
             [self setCustomStyleForXLabel:label];
             [self addSubview:label];
@@ -215,7 +223,6 @@
     if (_xLabelColor) {
         label.textColor = _xLabelColor;
     }
-
 }
 
 - (void)setCustomStyleForYLabel:(UILabel *)label {
@@ -303,6 +310,7 @@
 #pragma mark - Draw Chart
 
 - (void)strokeChart {
+    
     _chartPath = [[NSMutableArray alloc] init];
     _pointPath = [[NSMutableArray alloc] init];
     _gradeStringPaths = [NSMutableArray array];
@@ -528,6 +536,7 @@
 #pragma mark - Set Chart Data
 
 - (void)setChartData:(NSArray *)data {
+    
     if (data != _chartData) {
 
         // remove all shape layers before adding new ones
@@ -648,15 +657,13 @@
 
         chartLine.path = progressline.CGPath;
         pointLayer.path = pointPath.CGPath;
-
-
     }
-
 }
 
 #define IOS7_OR_LATER [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
 
 - (void)drawRect:(CGRect)rect {
+    
     if (self.isShowCoordinateAxis) {
         CGFloat yAxisOffset = 10.f;
 
@@ -673,6 +680,7 @@
         CGContextAddLineToPoint(ctx, _chartMarginBottom + yAxisOffset, yAxisHeight);
         CGContextAddLineToPoint(ctx, xAxisWidth, yAxisHeight);
         CGContextStrokePath(ctx);
+        
 
         // draw y axis arrow  // 箭头
 //        CGContextMoveToPoint(ctx, _chartMarginBottom + yAxisOffset - 3, 6);
@@ -697,14 +705,40 @@
                 CGContextStrokePath(ctx);
             }
 
-//            // draw y axis separator
-//            CGFloat yStepHeight = _chartCavanHeight / _yLabelNum;
-//            for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
+            // draw y axis separator
+            CGFloat yStepHeight = _chartCavanHeight / _yLabelNum;
+            for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
 //                point = CGPointMake(_chartMarginBottom + yAxisOffset, (_chartCavanHeight - i * yStepHeight + _yLabelHeight / 2));
 //                CGContextMoveToPoint(ctx, point.x, point.y);
 //                CGContextAddLineToPoint(ctx, point.x + 2, point.y);
 //                CGContextStrokePath(ctx);
-//            }
+                
+                
+                
+                // 画虚线
+//                ZDCustomView *firstView = [[ZDCustomView alloc]initWithFrame:CGRectMake(_chartMarginBottom + 10, (_chartCavanHeight - i * yStepHeight + _yLabelHeight / 2), self.frame.size.width-_chartMarginLeft-35, 1)];
+//                firstView.backgroundColor = [UIColor whiteColor];
+//                [self addSubview:firstView];
+                
+//                // Drawing code
+//                CGContextRef currentContext = UIGraphicsGetCurrentContext();
+//                //设置虚线颜色
+//                CGContextSetStrokeColorWithColor(currentContext, [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f].CGColor);
+//                //设置虚线宽度
+//                CGContextSetLineWidth(currentContext, 1);
+//                //设置虚线绘制起点
+//                CGContextMoveToPoint(currentContext, 0, 0);
+//                //设置虚线绘制终点
+//                CGContextAddLineToPoint(currentContext, self.frame.origin.x + self.frame.size.width, 0);
+//                //设置虚线排列的宽度间隔:下面的arr中的数字表示先绘制3个点再绘制1个点
+//                CGFloat arr[] = {3, 1};
+//                //下面最后一个参数“2”代表排列的个数。
+//                CGContextSetLineDash(currentContext, 0, arr, 2);
+//                //画线
+//                CGContextDrawPath(currentContext, kCGPathStroke);
+                
+            }
+            
         }
 
         UIFont *font = [UIFont systemFontOfSize:11];
@@ -783,12 +817,13 @@
 
     // Coordinate Axis Default Values
     _showCoordinateAxis = NO;
-    _axisColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.f];
-    _axisWidth = 1.f;
+    
+    // 轴颜色
+    _axisColor = [UIColor colorWithRed:143.0f/255.0f green:195.0f/255.0f blue:32.0f/255.0f alpha:1.0f];
+    _axisWidth = 2.f;
 
     // do not create curved line chart by default
     _showSmoothLines = NO;
-
 }
 
 #pragma mark - tools

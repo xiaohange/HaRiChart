@@ -24,7 +24,7 @@
     // Drawing code
     CGContextRef currentContext = UIGraphicsGetCurrentContext();
     //设置虚线颜色
-    CGContextSetStrokeColorWithColor(currentContext, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(currentContext, [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f].CGColor);
     //设置虚线宽度
     CGContextSetLineWidth(currentContext, 1);
     //设置虚线绘制起点

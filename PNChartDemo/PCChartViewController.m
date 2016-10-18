@@ -23,11 +23,12 @@
         self.titleLabel.text = @"Line Chart";
 
         self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 135.0, SCREEN_WIDTH-40, 200)];
-        self.lineChart.backgroundColor = [UIColor yellowColor];
+        self.lineChart.backgroundColor = [UIColor whiteColor];
         self.lineChart.yLabelFormat = @"%1.1f";
         [self.lineChart setXLabels:@[@"23",@"25",@"27",@"29",@"1",@"3",@"5"]];
         self.lineChart.showCoordinateAxis = YES;
-        
+        self.lineChart.yLabelColor = [UIColor redColor];
+        self.lineChart.xLabelColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
 
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
@@ -38,6 +39,7 @@
         //Only if you needed
         self.lineChart.yFixedValueMax = 120.0;
         self.lineChart.yFixedValueMin = 0.0;
+        self.lineChart.yLabelNum = 7;
 
         [self.lineChart setYLabels:@[
             @"0",
@@ -54,10 +56,10 @@
         NSArray * data01Array = @[@20.0, @40, @60, @20, @50, @60, @80,];
         PNLineChartData *data01 = [PNLineChartData new];
 //        data01.dataTitle = @"女款";
-        data01.color = [UIColor greenColor];
+        data01.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
         data01.alpha = 1.0f;
         data01.itemCount = data01Array.count;
-        data01.inflexionPointColor = [UIColor redColor]; // ⭕️颜色
+        data01.inflexionPointColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f]; // ⭕️颜色
         data01.inflexionPointStyle = PNLineChartPointStyleCircle;
         data01.getData = ^(NSUInteger index) {
             CGFloat yValue = [data01Array[index] floatValue];
@@ -68,10 +70,10 @@
         NSArray * data02Array = @[@40.0, @80.1, @26.4, @10.2, @70.2, @47.2, @45.2];
         PNLineChartData *data02 = [PNLineChartData new];
         data02.dataTitle = @"Beta";
-        data02.color = [UIColor greenColor];
+        data02.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
         data02.alpha = 1.0f;
         data02.itemCount = data02Array.count;
-        data02.inflexionPointColor = [UIColor blackColor];
+        data02.inflexionPointColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
         data02.inflexionPointStyle = PNLineChartPointStyleCircle;
         data02.getData = ^(NSUInteger index) {
             CGFloat yValue = [data02Array[index] floatValue];
@@ -83,21 +85,15 @@
         self.lineChart.delegate = self;
         
         [self.view addSubview:self.lineChart];
+       
 
         self.lineChart.legendStyle = PNLegendItemStyleSerial;
         self.lineChart.legendFont = [UIFont boldSystemFontOfSize:12.0f];
-        self.lineChart.legendFontColor = [UIColor redColor];
+//        self.lineChart.legendFontColor = [UIColor redColor];
         
 //        UIView *legend = [self.lineChart getLegendWithMaxWidth:320];
 //        [legend setFrame:CGRectMake(30, 340, legend.frame.size.width, legend.frame.size.width)];
 //        [self.view addSubview:legend];
-        
-        
-        
-        ZDCustomView *view = [[ZDCustomView alloc]initWithFrame:CGRectMake(0, 400, SCREEN_WIDTH, 1)];
-        view.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:view];
-
     }
 }
 
@@ -122,7 +118,6 @@
     CGPathRelease(path);
     //  把绘制好的虚线添加上来
     [lineView.layer addSublayer:shapeLayer];
-    
 }
 
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex pointIndex:(NSInteger)pointIndex{
