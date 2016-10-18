@@ -150,12 +150,18 @@
             [_yChartLabels addObject:label];
             
         }
-        for (NSUInteger i = 0; i < [self.xLabels count]; i++) {
-            //画虚线
-            ZDCustomView *firstView = [[ZDCustomView alloc]initWithFrame:CGRectMake(_chartMarginBottom + 10, (_chartCavanHeight - i * yStepHeight + _yLabelHeight / 2), self.frame.size.width-_chartMarginLeft-35, 1)];
-            firstView.backgroundColor = [UIColor whiteColor];
-            [self addSubview:firstView];
-        }
+        // 根据传入的ySliderArray数组中要画的虚线
+        for (int j=0; j<self.ySliderArray.count; j++) {
+            
+            for (NSUInteger i = 0; i < [self.yLabels count]; i++) {
+                if ([self.ySliderArray[j] isEqualToString:self.yLabels[i]]) {
+                    //画虚线
+                    ZDCustomView *firstView = [[ZDCustomView alloc]initWithFrame:CGRectMake(_chartMarginBottom + 10, (_chartCavanHeight - i * yStepHeight + _yLabelHeight / 2), self.frame.size.width-_chartMarginLeft-35, 1)];
+                    firstView.backgroundColor = [UIColor whiteColor];
+                    [self addSubview:firstView];
+             }
+          }
+       }
     }
 }
 
@@ -206,7 +212,6 @@
 
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];//x轴的位置调整
             [label setTextAlignment:NSTextAlignmentLeft];
-            label.backgroundColor = [UIColor clearColor];
             label.text = labelText;
             [self setCustomStyleForXLabel:label];
             [self addSubview:label];

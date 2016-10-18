@@ -22,6 +22,7 @@
 
 @property (nonatomic) NSArray *xLabels;
 @property (nonatomic) NSArray *yLabels;
+@property (nonatomic, strong) NSMutableArray *ySliderArray;
 
 /**
  * Array of `LineChartData` objects, one for each line.

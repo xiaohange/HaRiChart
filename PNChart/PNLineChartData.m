@@ -21,7 +21,7 @@
 {
     _inflexionPointStyle = PNLineChartPointStyleNone;
     _inflexionPointWidth = 6.f;
-    _lineWidth = 2.f;
+    _lineWidth = 1.f;
     _alpha = 1.f;
     _showPointLabel = NO;
     _pointLabelColor = [UIColor blackColor];

@@ -23,12 +23,13 @@
         self.titleLabel.text = @"Line Chart";
 
         self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 135.0, SCREEN_WIDTH-40, 200)];
+        // x轴颜色要放在初始化最前面
+        self.lineChart.xLabelColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
+        self.lineChart.yLabelColor = [UIColor redColor];
         self.lineChart.backgroundColor = [UIColor whiteColor];
         self.lineChart.yLabelFormat = @"%1.1f";
         [self.lineChart setXLabels:@[@"23",@"25",@"27",@"29",@"1",@"3",@"5"]];
         self.lineChart.showCoordinateAxis = YES;
-        self.lineChart.yLabelColor = [UIColor redColor];
-        self.lineChart.xLabelColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
 
         // added an examle to show how yGridLines can be enabled
         // the color is set to clearColor so that the demo remains the same
@@ -40,6 +41,8 @@
         self.lineChart.yFixedValueMax = 120.0;
         self.lineChart.yFixedValueMin = 0.0;
         self.lineChart.yLabelNum = 7;
+        // 纵坐标哪个需要划虚线
+        self.lineChart.ySliderArray = [NSMutableArray arrayWithArray:@[@"0",@"20",@"40",@"60",@"80",@"100",@"120"]];
 
         [self.lineChart setYLabels:@[
             @"0",
@@ -48,12 +51,12 @@
             @"60",
             @"80",
             @"100",
-            @"120",
+            @"120"
             ]
          ];
         
         // Line Chart #1
-        NSArray * data01Array = @[@20.0, @40, @60, @20, @50, @60, @80,];
+        NSArray * data01Array = @[@20.0, @40, @60, @20, @50, @60, @80];
         PNLineChartData *data01 = [PNLineChartData new];
 //        data01.dataTitle = @"女款";
         data01.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
@@ -95,29 +98,6 @@
 //        [legend setFrame:CGRectMake(30, 340, legend.frame.size.width, legend.frame.size.width)];
 //        [self.view addSubview:legend];
     }
-}
-
-- (void)drawDashLine:(UIView *)lineView lineLength:(int)lineLength lineSpacing:(int)lineSpacing lineColor:(UIColor *)lineColor
-{
-    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-    [shapeLayer setBounds:lineView.bounds];
-    [shapeLayer setPosition:CGPointMake(CGRectGetWidth(lineView.frame) / 2, CGRectGetHeight(lineView.frame))];
-    [shapeLayer setFillColor:[UIColor clearColor].CGColor];
-    //  设置虚线颜色为blackColor
-    [shapeLayer setStrokeColor:lineColor.CGColor];
-    //  设置虚线宽度
-    [shapeLayer setLineWidth:CGRectGetHeight(lineView.frame)];
-    [shapeLayer setLineJoin:kCALineJoinRound];
-    //  设置线宽，线间距
-    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:lineLength], [NSNumber numberWithInt:lineSpacing], nil]];
-    //  设置路径
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathAddLineToPoint(path, NULL, CGRectGetWidth(lineView.frame), 0);
-    [shapeLayer setPath:path];
-    CGPathRelease(path);
-    //  把绘制好的虚线添加上来
-    [lineView.layer addSublayer:shapeLayer];
 }
 
 - (void)userClickedOnLineKeyPoint:(CGPoint)point lineIndex:(NSInteger)lineIndex pointIndex:(NSInteger)pointIndex{
