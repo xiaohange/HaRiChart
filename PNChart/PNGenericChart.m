@@ -10,8 +10,6 @@
 
 @interface PNGenericChart ()
 
-
-
 @end
 
 @implementation PNGenericChart

@@ -480,7 +480,7 @@
                     float last_y1 = last_y + (inflexionWidth / 2) / distance * (y - last_y);
                     float x1 = x - (inflexionWidth / 2) / distance * (x - last_x);
                     float y1 = y - (inflexionWidth / 2) / distance * (y - last_y);
-
+                   
                     [progrssLinePaths addObject:@{@"from" : [NSValue valueWithCGPoint:CGPointMake(last_x1, last_y1)],
                             @"to" : [NSValue valueWithCGPoint:CGPointMake(x1, y1)]}];
                 }
