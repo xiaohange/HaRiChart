@@ -22,7 +22,7 @@
 
         self.titleLabel.text = @"Line Chart";
 
-        self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(10, 135.0, SCREEN_WIDTH-20, 200)];
+        self.lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(20, 135.0, SCREEN_WIDTH-40, 200)];
         self.lineChart.backgroundColor = [UIColor yellowColor];
         self.lineChart.yLabelFormat = @"%1.1f";
         [self.lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5",@"6",@"7"]];
