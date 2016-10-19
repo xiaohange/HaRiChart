@@ -2,8 +2,8 @@
 //  PNChartLabel.h
 //  PNChart
 //
-//  Created by kevin on 10/3/13.
-//  Copyright (c) 2013年 kevinzhow. All rights reserved.
+//  Created by HaRi on 18/10/16.
+//  Copyright (c) 2016年 HaRi. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

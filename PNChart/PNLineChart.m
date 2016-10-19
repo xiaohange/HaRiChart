@@ -2,8 +2,8 @@
 //  PNLineChart.m
 //  PNChartDemo
 //
-//  Created by kevin on 11/7/13.
-//  Copyright (c) 2013年 kevinzhow. All rights reserved.
+//  Created by HaRi on 18/10/16.
+//  Copyright (c) 2016年 HaRi. All rights reserved.
 //
 
 #import "PNLineChart.h"
@@ -104,7 +104,6 @@
             num -= 1;
         }
     }
-    
 }
 
 - (void)setYLabels:(NSArray *)yLabels {
@@ -323,6 +322,7 @@
     [self calculateChartPath:_chartPath andPointsPath:_pointPath andPathKeyPoints:_pathPoints andPathStartEndPoints:_endPointsOfPath];
     // Draw each line
     for (NSUInteger lineIndex = 0; lineIndex < self.chartData.count; lineIndex++) {
+     
         PNLineChartData *chartData = self.chartData[lineIndex];
         CAShapeLayer *chartLine = (CAShapeLayer *) self.chartLineArray[lineIndex];
         CAShapeLayer *pointLayer = (CAShapeLayer *) self.chartPointArray[lineIndex];
@@ -372,6 +372,7 @@
 
     // Draw each line
     for (NSUInteger lineIndex = 0; lineIndex < self.chartData.count; lineIndex++) {
+        
         PNLineChartData *chartData = self.chartData[lineIndex];
 
         CGFloat yValue;
@@ -381,10 +382,8 @@
 
         UIBezierPath *pointPath = [UIBezierPath bezierPath];
 
-
         [chartPath insertObject:progressline atIndex:lineIndex];
         [pointsPath insertObject:pointPath atIndex:lineIndex];
-
 
         NSMutableArray *gradePathArray = [NSMutableArray array];
         [self.gradeStringPaths addObject:gradePathArray];
@@ -432,9 +431,9 @@
                     float last_y1 = last_y + (inflexionWidth / 2) / distance * (y - last_y);
                     float x1 = x - (inflexionWidth / 2) / distance * (x - last_x);
                     float y1 = y - (inflexionWidth / 2) / distance * (y - last_y);
-
+                    
                     [progrssLinePaths addObject:@{@"from" : [NSValue valueWithCGPoint:CGPointMake(last_x1, last_y1)],
-                            @"to" : [NSValue valueWithCGPoint:CGPointMake(x1, y1)]}];
+                                                      @"to" : [NSValue valueWithCGPoint:CGPointMake(x1, y1)]}];
                 }
             }
                 // Square point

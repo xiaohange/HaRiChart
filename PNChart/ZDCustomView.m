@@ -3,7 +3,7 @@
 //  PNChartDemo
 //
 //  Created by 韩俊强 on 2016/10/17.
-//  Copyright © 2016年 kevinzhow. All rights reserved.
+//  Copyright © 2016年 HaRi. All rights reserved.
 //
 
 #import "ZDCustomView.h"

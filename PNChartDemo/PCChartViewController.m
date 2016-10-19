@@ -2,8 +2,8 @@
 //  PCChartViewController.m
 //  PNChartDemo
 //
-//  Created by kevin on 11/7/13.
-//  Copyright (c) 2013年 kevinzhow. All rights reserved.
+//  Created by HaRi on 18/10/16.
+//  Copyright (c) 2016年 HaRi. All rights reserved.
 //
 
 #import "PCChartViewController.h"
@@ -28,21 +28,22 @@
         self.lineChart.yLabelColor = [UIColor redColor];
         self.lineChart.backgroundColor = [UIColor whiteColor];
         self.lineChart.yLabelFormat = @"%1.1f";
-        [self.lineChart setXLabels:@[@"23",@"25",@"27",@"29",@"1",@"3",@"5"]];
+        [self.lineChart setXLabels:@[@"23",@"25",@"27",@"29",@"1",@"3",@"5",@"7"]];
         self.lineChart.showCoordinateAxis = YES;
 
-        // added an examle to show how yGridLines can be enabled
-        // the color is set to clearColor so that the demo remains the same
-        self.lineChart.yGridLinesColor = [UIColor clearColor];
-        self.lineChart.showYGridLines = YES;
+        // 纵坐标全选虚线两种方式：
+        // 方式1: 纵坐标哪个需要划虚线
+        self.lineChart.ySliderArray = [NSMutableArray arrayWithArray:@[@"0",@"20",@"40",@"60",@"80",@"100",@"120"]];
+        // 方式2: 全选绘制虚线:
+        self.lineChart.yGridLinesColor = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
+        self.lineChart.showYGridLines = NO;
         
         //Use yFixedValueMax and yFixedValueMin to Fix the Max and Min Y Value
         //Only if you needed
         self.lineChart.yFixedValueMax = 120.0;
         self.lineChart.yFixedValueMin = 0.0;
         self.lineChart.yLabelNum = 7;
-        // 纵坐标哪个需要划虚线
-        self.lineChart.ySliderArray = [NSMutableArray arrayWithArray:@[@"0",@"20",@"40",@"60",@"80",@"100",@"120"]];
+        
 
         [self.lineChart setYLabels:@[
             @"0",
@@ -54,9 +55,10 @@
             @"120"
             ]
          ];
-        
+  /*
         // Line Chart #1
-        NSArray * data01Array = @[@20.0, @40, @60, @20, @50, @60, @80];
+        NSArray * data01Array = @[@20.0, @40, @60, @0, @20, @50, @60, @80];
+      
         PNLineChartData *data01 = [PNLineChartData new];
 //        data01.dataTitle = @"女款";
         data01.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
@@ -68,9 +70,9 @@
             CGFloat yValue = [data01Array[index] floatValue];
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
-        
+ */
         // Line Chart #2
-        NSArray * data02Array = @[@40.0, @80.1, @26.4, @10.2, @70.2, @47.2, @45.2];
+        NSMutableArray * data02Array = [NSMutableArray arrayWithArray: @[@40.0, @80.1, @26.4, @10.2, @70.2, @0, @45.2,@50]];
         PNLineChartData *data02 = [PNLineChartData new];
         data02.dataTitle = @"Beta";
         data02.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
@@ -83,7 +85,7 @@
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
 
-        self.lineChart.chartData = @[data01,data02];
+        self.lineChart.chartData = @[data02];
         [self.lineChart strokeChart];
         self.lineChart.delegate = self;
         

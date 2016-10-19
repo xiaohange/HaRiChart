@@ -1,6 +1,6 @@
 //
-// Created by Jörg Polakowski on 14/12/13.
-// Copyright (c) 2013 kevinzhow. All rights reserved.
+// Created by HaRi on 18/10/16.
+// Copyright (c) 2016 HaRi. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

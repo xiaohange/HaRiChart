@@ -2,8 +2,8 @@
 //  PNGenericChart.m
 //  PNChartDemo
 //
-//  Created by Andi Palo on 26/02/15.
-//  Copyright (c) 2015 kevinzhow. All rights reserved.
+//  Created by HaRi on 19/10/16.
+//  Copyright (c) 2015 HaRi. All rights reserved.
 //
 
 #import "PNGenericChart.h"
