@@ -3,7 +3,7 @@
 //  PNChartDemo
 //
 //  Created by HaRi on 19/10/16.
-//  Copyright (c) 2015 HaRi. All rights reserved.
+//  Copyright (c) 2016 HaRi. All rights reserved.
 //
 
 #import "PNGenericChart.h"
@@ -30,8 +30,6 @@
     self.displayAnimated = YES;
 }
 
-
-
 /**
  *  to be implemented in subclass 
  */
@@ -47,6 +45,5 @@
         _labelRowsInSerialMode = 1;
     }
 }
-
 
 @end

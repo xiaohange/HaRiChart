@@ -17,7 +17,7 @@
     
     self.titleLabel.textColor = [UIColor blackColor];
 
-    
+ 
     if ([self.title isEqualToString:@"Line Chart"]) {
 
         self.titleLabel.text = @"Line Chart";
@@ -72,7 +72,8 @@
         };
  */
         // Line Chart #2
-        NSMutableArray * data02Array = [NSMutableArray arrayWithArray: @[@40.0, @80.1, @26.4, @10.2, @70.2, @0, @45.2,@50]];
+        NSMutableArray * data02Array = [NSMutableArray arrayWithArray: @[@40.0, @80.1, @26.4, @0, @0, @0, @45.2,@50]];
+        self.lineChart.dataSource = [NSMutableArray arrayWithArray:data02Array];
         PNLineChartData *data02 = [PNLineChartData new];
         data02.dataTitle = @"Beta";
         data02.color = [UIColor colorWithRed:14.0f/255.0f green:110.0f/255.0f blue:108.0f/255.0f alpha:1.0f];
@@ -85,6 +86,7 @@
             return [PNLineChartDataItem dataItemWithY:yValue];
         };
 
+        
         self.lineChart.chartData = @[data02];
         [self.lineChart strokeChart];
         self.lineChart.delegate = self;
